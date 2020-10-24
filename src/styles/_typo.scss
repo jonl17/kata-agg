@@ -1,0 +1,18 @@
+@import './variables';
+
+@font-face {
+  src: url('./fonts/reg.otf');
+  font-family: Helvetica Neau;
+  font-weight: normal;
+}
+
+@font-face {
+  src: url('./fonts/bold.otf');
+  font-family: Helvetica Neau;
+  font-weight: bold;
+}
+
+body {
+  font-family: Helvetica Neau;
+  font-weight: normal;
+}
