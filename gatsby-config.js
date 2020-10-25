@@ -39,6 +39,7 @@ module.exports = {
           children
         ) => htmlSerializer(element, content),
         schemas: {
+          frontpage: require(`./src/prismic/schemas/frontpage.json`),
           page: require(`./src/prismic/schemas/page.json`),
           work: require(`./src/prismic/schemas/work.json`),
         },

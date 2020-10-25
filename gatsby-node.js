@@ -1,4 +1,4 @@
-const path = require("path")
+const path = require('path')
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
@@ -29,16 +29,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const workTemplate = path.resolve(__dirname, `src/templates/Work/Work.tsx`)
 
   pages.data.allPrismicPage.nodes.forEach(node => {
-    let path = `/${node.uid}`
-
-    if (node.uid === "frontpage") {
-      path = `/`
-    } else {
-      path = `/${node.uid}`
-    }
-
     createPage({
-      path: path,
+      path: `/${node.uid}`,
       component: pageTemplate,
       context: {
         id: node.id,

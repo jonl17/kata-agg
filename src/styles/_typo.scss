@@ -15,4 +15,16 @@
 body {
   font-family: Helvetica Neau;
   font-weight: normal;
+
+  a {
+    color: $black;
+    &:hover {
+      text-decoration: none;
+      color: $black;
+    }
+  }
+}
+
+.parag {
+  font-size: 20px;
 }

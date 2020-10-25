@@ -1,0 +1,26 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID"
+      }
+    },
+    "works": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "work": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["work"],
+              "label": "Work"
+            }
+          }
+        },
+        "label": "Works"
+      }
+    }
+  }
+}
