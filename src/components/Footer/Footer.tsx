@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './Footer.module.scss'
 import { Link } from 'gatsby'
 import cn from 'classnames'
+import { WorkContext } from '~/context/workContext'
 
 const DetailBox = () => {
+  const { footerData } = useContext(WorkContext)
   return (
     <div>
-      <p className='parag'>the WOK</p>
-      <p className='parag'>1992</p>
+      <p className='parag'>{footerData}</p>
     </div>
   )
 }
