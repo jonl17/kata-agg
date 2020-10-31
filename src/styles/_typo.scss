@@ -2,20 +2,29 @@
 
 @font-face {
   src: url('./fonts/reg.otf');
-  font-family: Helvetica Neau;
+  font-family: Neau;
   font-weight: normal;
 }
 
 @font-face {
   src: url('./fonts/bold.otf');
-  font-family: Helvetica Neau;
+  font-family: Neau;
   font-weight: bold;
 }
 
 body {
-  font-family: Helvetica Neau;
-  font-weight: normal;
-
+  p,
+  a {
+    font-family: Neau;
+    text-transform: lowercase;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: Neau;
+  }
   a {
     color: $black;
     &:hover {

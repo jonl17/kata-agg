@@ -1,13 +1,14 @@
 @import './variables';
+@import './typo';
 
 // some styles
 
 body {
+  font-family: Helvetica Neau;
+
   &::-webkit-scrollbar {
     display: none;
   }
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-
-@import './typo';
