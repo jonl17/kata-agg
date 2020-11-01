@@ -6,11 +6,7 @@ import { WorkContext } from '~/context/workContext'
 
 const DetailBox = () => {
   const { footerData } = useContext(WorkContext)
-  return (
-    <div>
-      <p className='parag'>{footerData}</p>
-    </div>
-  )
+  return <div className='parag'>{footerData}</div>
 }
 
 const Footer = () => {

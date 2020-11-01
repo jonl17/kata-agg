@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react'
 
 const WorkContext = createContext<{
   footerData: string
-  updateFooter: (data: string) => void
+  updateFooter: (data: any) => void
 }>({
   footerData: '',
   updateFooter() {},
@@ -10,7 +10,7 @@ const WorkContext = createContext<{
 
 const WorkContextProvider: React.FC = ({ children }) => {
   const [footerData, setFooterData] = useState('')
-  const updateFooter = (data: string) => {
+  const updateFooter = (data: any) => {
     setFooterData(data)
   }
   return (
