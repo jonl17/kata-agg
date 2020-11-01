@@ -5,10 +5,7 @@ import { WorkContextProvider } from '~/context/workContext'
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <main>
-      <WorkContextProvider>
-        {children}
-        <Footer />
-      </WorkContextProvider>
+      <WorkContextProvider>{children}</WorkContextProvider>
     </main>
   )
 }

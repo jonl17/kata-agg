@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import '~/prismic/fragments/work'
 import Slider from '~/components/Slider'
 import { PrismicFrontpageQuery } from '~/types'
+import Footer from '~/components/Footer'
 
 const Frontpage: React.FC<{
   data: { prismicFrontpage: PrismicFrontpageQuery }
@@ -25,6 +26,7 @@ const Frontpage: React.FC<{
           })}
         />
       )}
+      <Footer />
     </div>
   )
 }

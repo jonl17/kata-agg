@@ -1,0 +1,12 @@
+@import '../../styles/variables';
+
+.textBox {
+  p,
+  a {
+    margin: 0;
+  }
+}
+
+.textBox:not(:first-of-type) {
+  margin: calc(#{$spacer} * 2) 0;
+}

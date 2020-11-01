@@ -20,6 +20,36 @@
         "allowTargetBlank": true,
         "label": "Content"
       }
+    },
+    "contact": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, embed, list-item, o-list-item, rtl",
+        "allowTargetBlank": true,
+        "label": "Contact"
+      }
+    },
+    "texts": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "pdf": {
+            "type": "Link",
+            "config": {
+              "select": "media",
+              "label": "Pdf"
+            }
+          },
+          "description": {
+            "type": "StructuredText",
+            "config": {
+              "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, embed, list-item, o-list-item, rtl",
+              "label": "Description"
+            }
+          }
+        },
+        "label": "Texts"
+      }
     }
   }
 }
