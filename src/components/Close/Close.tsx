@@ -1,11 +1,17 @@
 import React, { useContext } from 'react'
 import { Link } from 'gatsby'
 import { WorkContext } from '~/context/workContext'
+import styles from './Close.module.scss'
 
 export default ({ ...props }) => {
   const { updateFooter } = useContext(WorkContext)
   return (
-    <Link to='/' {...props} onClick={() => updateFooter('')}>
+    <Link
+      className={styles.btn}
+      to='/'
+      {...props}
+      onClick={() => updateFooter('')}
+    >
       <svg
         width='24'
         height='24'

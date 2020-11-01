@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Footer from '~/components/Footer'
 import { WorkContext } from '~/context/workContext'
 import Close from '~/components/Close'
+import styles from './Work.module.scss'
 
 const Work: React.FC<{
   data: {
@@ -23,12 +24,17 @@ const Work: React.FC<{
   const { content, title } = data.prismicWork.data
 
   useEffect(() => {
-    updateFooter(<div dangerouslySetInnerHTML={{ __html: content.html }} />)
+    updateFooter(
+      <div
+        className={styles.content}
+        dangerouslySetInnerHTML={{ __html: content.html }}
+      />
+    )
   }, [])
 
   return (
-    <div className='mt-4'>
-      <Close className='col-1 offset-11' />
+    <div className='mt-4 position-relative container'>
+      <Close />
       <Footer />
     </div>
   )

@@ -1,0 +1,7 @@
+@import '../../styles/variables';
+
+.content {
+  p:not(:last-of-type) {
+    margin-bottom: 0.5rem;
+  }
+}

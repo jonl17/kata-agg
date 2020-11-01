@@ -26,7 +26,11 @@ const Item: React.FC<{ item: Work; fixed: boolean }> = ({ item, fixed }) => {
         className={styles.img}
       >
         <img
-          onMouseOver={() => updateFooter(item.title.text)}
+          onMouseOver={() =>
+            updateFooter(
+              <div dangerouslySetInnerHTML={{ __html: item.content.html }} />
+            )
+          }
           onMouseLeave={() => updateFooter('')}
           src={url}
           alt={alt}

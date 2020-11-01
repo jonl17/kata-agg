@@ -25,10 +25,10 @@ const Page: React.FC<
 > = ({ pageContext, data }) => {
   const { content, contact, texts } = data.prismicPage.data
   return (
-    <div className='d-flex mt-4'>
-      {contact && <Content className='col-lg-3' html={contact.html} />}
-      <div className='col-lg-6'>
+    <div className='d-flex mt-4 position-relative container'>
+      <div className={cn('col-lg-9', styles.content)}>
         <Content html={content.html} />
+        {contact && <Content html={contact.html} />}
         {texts && !!texts.length && (
           <div>
             <p className='mb-0 mt-3 larger-text'>texts</p>
@@ -45,7 +45,7 @@ const Page: React.FC<
           </div>
         )}
       </div>
-      <Close className='col-lg-1 offset-lg-2' />
+      <Close />
     </div>
   )
 }
