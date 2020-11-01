@@ -18,7 +18,14 @@
       "config": {
         "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
         "allowTargetBlank": true,
-        "label": "Content"
+        "label": "Content",
+        "labels": {
+          "XX": [
+            {
+              "name": "larger-text"
+            }
+          ]
+        }
       }
     },
     "contact": {
@@ -44,7 +51,14 @@
             "type": "StructuredText",
             "config": {
               "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, embed, list-item, o-list-item, rtl",
-              "label": "Description"
+              "label": "Description",
+              "labels": {
+                "XX": [
+                  {
+                    "name": "larger-text"
+                  }
+                ]
+              }
             }
           }
         },

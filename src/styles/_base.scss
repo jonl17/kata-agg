@@ -14,10 +14,15 @@ body {
 }
 
 .anchorClass {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
 ::selection {
   background: $white;
   color: gold;
+}
+
+.larger-text {
+  font-size: 35px;
+  line-height: 42.73px;
 }

@@ -1,6 +1,8 @@
 @import '../../styles/variables';
 
 .textBox {
+  height: 100%;
+  display: block;
   p,
   a {
     margin: 0;

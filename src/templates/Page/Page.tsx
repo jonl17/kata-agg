@@ -31,12 +31,16 @@ const Page: React.FC<
         <Content html={content.html} />
         {texts && !!texts.length && (
           <div>
-            <p className='mb-0 mt-3'>texts</p>
-            {texts.map(text => (
-              <Content
-                className={cn(styles.textBox)}
-                html={text.description.html}
-              />
+            <p className='mb-0 mt-3 larger-text'>texts</p>
+            {texts.map((text, idx) => (
+              <a
+                key={idx}
+                className={cn(styles.textBox, 'anchorClass')}
+                href={text.pdf.url}
+                target='_blank'
+              >
+                <Content html={text.description.html} />
+              </a>
             ))}
           </div>
         )}
