@@ -27,7 +27,7 @@ const Work: React.FC<{
     updateFooter(
       <div
         className={styles.content}
-        dangerouslySetInnerHTML={{ __html: content.html }}
+        dangerouslySetInnerHTML={{ __html: content ? content.html : '' }}
       />
     )
   }, [])
@@ -47,7 +47,7 @@ export const query = graphql`
         title {
           html
         }
-        content {
+        description {
           html
         }
       }

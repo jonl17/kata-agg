@@ -14,12 +14,12 @@ export const fragment = graphql`
         alt
         url
       }
-      content {
+      description {
         html
         text
       }
       year
-      focus
+      topofthepops
       images {
         image {
           alt

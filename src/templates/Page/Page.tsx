@@ -25,9 +25,9 @@ const Page: React.FC<
 > = ({ pageContext, data }) => {
   const { content, contact, texts } = data.prismicPage.data
   return (
-    <div className='d-flex mt-4 position-relative container'>
-      <div className={cn('col-lg-9', styles.content)}>
-        <Content html={content.html} />
+    <div className='d-flex mt-1 position-relative'>
+      <div className={cn('col-lg-11', styles.content)}>
+        {content && <Content html={content.html} />}
         {contact && <Content html={contact.html} />}
         {texts && !!texts.length && (
           <div>

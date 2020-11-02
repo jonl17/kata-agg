@@ -16,7 +16,7 @@ interface PrismicWorkQuery {
         text: string
       }
       year: number
-      focus: boolean
+      topofthepops: boolean
       images: {
         image: Image
       }[]
@@ -44,7 +44,7 @@ export interface Work {
     text: string
   }
   year: number
-  focus: boolean
+  topofthepops: boolean
   images: {
     image: Image
   }[]

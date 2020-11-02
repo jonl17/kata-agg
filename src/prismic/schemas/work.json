@@ -23,12 +23,12 @@
         "label": "Featured Image"
       }
     },
-    "content": {
+    "description": {
       "type": "StructuredText",
       "config": {
         "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, embed, list-item, o-list-item, rtl",
-        "label": "Content",
-        "placeholder": "A short text, perhaps the artwork materials."
+        "label": "Description",
+        "placeholder": "Name  / Year / Material"
       }
     },
     "year": {
@@ -37,11 +37,11 @@
         "label": "Year"
       }
     },
-    "focus": {
+    "topofthepops": {
       "type": "Boolean",
       "config": {
         "default_value": false,
-        "label": "Focus"
+        "label": "topOfThePops"
       }
     },
     "images": {

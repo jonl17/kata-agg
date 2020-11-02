@@ -28,7 +28,11 @@ const Item: React.FC<{ item: Work; fixed: boolean }> = ({ item, fixed }) => {
         <img
           onMouseOver={() =>
             updateFooter(
-              <div dangerouslySetInnerHTML={{ __html: item.content.html }} />
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: item.content ? item.content.html : '',
+                }}
+              />
             )
           }
           onMouseLeave={() => updateFooter('')}
