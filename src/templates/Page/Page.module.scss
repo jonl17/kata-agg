@@ -1,5 +1,11 @@
 @import '../../styles/variables';
 
+.pageWrap {
+  p {
+    margin-bottom: $spacer * 2;
+  }
+}
+
 .textBox {
   height: 100%;
   display: block;
@@ -13,10 +19,15 @@
   margin: calc(#{$spacer} * 2) 0;
 }
 
-.content {
+.noMargin {
   p,
   a {
     font-size: 30px;
     line-height: 35.73px;
+    margin: 0;
   }
+}
+
+.textWrap:not(:last-of-type) {
+  margin-bottom: $spacer * 2;
 }

@@ -1,49 +1,59 @@
 import React from 'react'
 import Content from '~/components/Content'
-import { graphql, PageProps } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Close from '~/components/Close'
 import styles from './Page.module.scss'
 import cn from 'classnames'
 
-const Page: React.FC<
-  PageProps & {
-    data: {
-      prismicPage: {
-        data: {
-          content: { html: string }
-          contact?: { html: string }
-          texts: {
-            pdf: { url: string }
-            description: {
-              html: string
-            }
-          }[]
-        }
+function breakEmailIntoTwoLines(html: string) {
+  return html.replace('@', '<br />(at)')
+}
+
+const Page: React.FC<{
+  data: {
+    prismicPage: {
+      data: {
+        about: { html: string }
+        contact_information: { html: string }
+        text: {
+          text_name: string
+          text_pdf_link: {
+            url: string
+          }
+          other_information: {
+            html: string
+          }
+        }[]
       }
     }
   }
-> = ({ pageContext, data }) => {
-  const { content, contact, texts } = data.prismicPage.data
+}> = ({ data }) => {
+  const {
+    about,
+    contact_information: contactInformation,
+    text,
+  } = data.prismicPage.data
   return (
-    <div className='d-flex mt-1 position-relative'>
-      <div className={cn('col-lg-11', styles.content)}>
-        {content && <Content html={content.html} />}
-        {contact && <Content html={contact.html} />}
-        {texts && !!texts.length && (
-          <div>
-            <p className='mb-0 mt-3 larger-text'>texts</p>
-            {texts.map((text, idx) => (
-              <a
-                key={idx}
-                className={cn(styles.textBox, 'anchorClass')}
-                href={text.pdf.url}
-                target='_blank'
-              >
-                <Content html={text.description.html} />
-              </a>
-            ))}
-          </div>
+    <div className={cn('d-flex mt-2 position-relative', styles.pageWrap)}>
+      <div className='col-lg-11'>
+        {about && <Content className={styles.noMargin} html={about.html} />}
+        <br />
+        {contactInformation && (
+          <Content html={breakEmailIntoTwoLines(contactInformation.html)} />
         )}
+        {text &&
+          !!text.length &&
+          text.map(item => (
+            <div className={cn('content', styles.textWrap)}>
+              <Link className='anchorClass' to={item.text_pdf_link.url}>
+                {item.text_name}
+              </Link>
+              <Content
+                className={styles.noMargin}
+                html={item.other_information.html}
+              />
+            </div>
+          ))}
       </div>
       <Close />
     </div>
@@ -54,17 +64,18 @@ export const query = graphql`
   query($id: String!) {
     prismicPage(id: { eq: $id }) {
       data {
-        content {
+        about {
           html
         }
-        contact {
+        contact_information {
           html
         }
-        texts {
-          pdf {
+        text {
+          text_name
+          text_pdf_link {
             url
           }
-          description {
+          other_information {
             html
           }
         }

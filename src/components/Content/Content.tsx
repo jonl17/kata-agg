@@ -1,11 +1,16 @@
 import React from 'react'
+import cn from 'classnames'
+import styles from './Content.module.scss'
 
 const Content: React.FC<{ html: string; className?: string }> = ({
   html,
   className = '',
 }) => {
   return (
-    <div className={className} dangerouslySetInnerHTML={{ __html: html }} />
+    <div
+      className={cn(className, 'content')}
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
   )
 }
 

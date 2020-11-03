@@ -13,56 +13,51 @@
         "label": "Title"
       }
     },
-    "content": {
+    "about": {
       "type": "StructuredText",
       "config": {
         "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
         "allowTargetBlank": true,
-        "label": "Content",
-        "labels": {
-          "XX": [
-            {
-              "name": "larger-text"
-            }
-          ]
-        }
+        "label": "About"
       }
     },
-    "contact": {
+    "contact_information": {
       "type": "StructuredText",
       "config": {
-        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, embed, list-item, o-list-item, rtl",
+        "multi": "paragraph, hyperlink, image, embed",
         "allowTargetBlank": true,
-        "label": "Contact"
+        "label": "Contact information",
+        "placeholder": "Email and/or Instagram link etc.."
       }
     },
-    "texts": {
+    "text": {
       "type": "Group",
       "config": {
         "fields": {
-          "pdf": {
-            "type": "Link",
+          "text_name": {
+            "type": "Text",
             "config": {
-              "select": "media",
-              "label": "Pdf"
+              "label": "Text name"
             }
           },
-          "description": {
+          "text_pdf_link": {
+            "type": "Link",
+            "config": {
+              "allowTargetBlank": true,
+              "label": "Text pdf link",
+              "placeholder": "Link .pdf from the media library"
+            }
+          },
+          "other_information": {
             "type": "StructuredText",
             "config": {
-              "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, embed, list-item, o-list-item, rtl",
-              "label": "Description",
-              "labels": {
-                "XX": [
-                  {
-                    "name": "larger-text"
-                  }
-                ]
-              }
+              "multi": "paragraph",
+              "label": "Other information",
+              "placeholder": "Could be author, publisher...whatever"
             }
           }
         },
-        "label": "Texts"
+        "label": "Text"
       }
     }
   }
