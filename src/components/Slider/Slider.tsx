@@ -3,9 +3,14 @@ import { Work } from '~/types'
 import styles from './styles.module.scss'
 import { getRandomCords } from '~/utils'
 import { WorkContext } from '~/context/workContext'
-import { Link } from 'gatsby'
+import { navigate } from 'gatsby'
+import cn from 'classnames'
 
-const Item: React.FC<{ item: Work; fixed: boolean }> = ({ item, fixed }) => {
+const Item: React.FC<{ item: Work; fixed: boolean; idx: number }> = ({
+  item,
+  fixed,
+  idx,
+}) => {
   const [cords, setCords] = useState<{ x: number; y: number } | null>(null)
   const { alt, url } = item.featured_image
 
@@ -16,30 +21,28 @@ const Item: React.FC<{ item: Work; fixed: boolean }> = ({ item, fixed }) => {
     }
   }, [])
 
-  const { updateFooter } = useContext(WorkContext)
+  const { updateFooter, focusedWorkIdx, updateFocusedWorkIdx } = useContext(
+    WorkContext
+  )
 
+  const isFocused = focusedWorkIdx === idx
   return (
     cords && (
-      <Link
+      <img
         style={{ transform: `translate3d(${cords.x}px, ${cords.y}px, 0px)` }}
-        to={`/work/${item.uid}`}
-        className={styles.img}
-      >
-        <img
-          onMouseOver={() =>
-            updateFooter(
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: item.content ? item.content.html : '',
-                }}
-              />
-            )
-          }
-          onMouseLeave={() => updateFooter('')}
-          src={url}
-          alt={alt}
-        />
-      </Link>
+        onClick={
+          isFocused
+            ? () => navigate(`/work/${item.uid}`)
+            : () => updateFocusedWorkIdx(idx)
+        }
+        className={cn(styles.imgContainer, {
+          [styles.focused]: isFocused,
+        })}
+        onMouseOver={() => updateFooter(<p>{item.title.text}</p>)}
+        onMouseLeave={() => updateFooter('')}
+        src={url}
+        alt={alt}
+      />
     )
   )
 }
@@ -52,7 +55,12 @@ const Slider: React.FC<{
       {works
         .filter(item => item.featured_image.url)
         .map((item, idx) => (
-          <Item fixed={idx === works.length - 1} key={idx} item={item} />
+          <Item
+            fixed={idx === works.length - 1}
+            key={idx}
+            item={item}
+            idx={idx}
+          />
         ))}
     </div>
   )

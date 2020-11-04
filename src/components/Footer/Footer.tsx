@@ -4,23 +4,20 @@ import { Link } from 'gatsby'
 import cn from 'classnames'
 import { WorkContext } from '~/context/workContext'
 
-const DetailBox = () => {
-  const { footerData } = useContext(WorkContext)
-  return <div className='parag'>{footerData}</div>
-}
+type FooterProps = { workDetails?: string | React.ReactNode }
 
-const Footer = () => {
+const Footer = ({ workDetails = '' }: FooterProps) => {
+  const { footerData } = useContext(WorkContext)
+
   return (
     <div
       className={cn(
-        styles.container,
-        'd-flex justify-content-between align-items-end'
+        styles.footerContainer,
+        'd-flex justify-content-between align-items-end container'
       )}
     >
-      <DetailBox />
-      <Link to='/information'>
-        <p className='parag'>Information</p>
-      </Link>
+      <div className='parag'>{workDetails}</div>
+      <Link to='/information'>{footerData ? footerData : 'Information'}</Link>
     </div>
   )
 }

@@ -2,12 +2,13 @@ import React, { useContext } from 'react'
 import { Link } from 'gatsby'
 import { WorkContext } from '~/context/workContext'
 import styles from './Close.module.scss'
+import cn from 'classnames'
 
 export default ({ ...props }) => {
   const { updateFooter } = useContext(WorkContext)
   return (
     <Link
-      className={styles.btn}
+      className={cn(styles.closeBtn)}
       to='/'
       {...props}
       onClick={() => updateFooter('')}

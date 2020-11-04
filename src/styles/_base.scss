@@ -2,6 +2,9 @@
 @import './typo';
 
 // some styles
+* {
+  cursor: url('../assets/custom-cursor.svg'), auto;
+}
 
 body {
   font-family: Helvetica Neau;
@@ -11,6 +14,10 @@ body {
   }
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+body a:hover {
+  cursor: url('../assets/custom-cursor.svg'), auto;
 }
 
 .anchorClass {
@@ -33,4 +40,9 @@ body {
     font-size: 30px;
     line-height: 35.73px;
   }
+}
+
+.container {
+  max-width: 100%;
+  padding: $spacer;
 }

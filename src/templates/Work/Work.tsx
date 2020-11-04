@@ -5,38 +5,40 @@ import { WorkContext } from '~/context/workContext'
 import Close from '~/components/Close'
 import styles from './Work.module.scss'
 
-const Work: React.FC<{
+interface Props {
   data: {
     prismicWork: {
       data: {
         title: {
+          text: string
+        }
+        description: {
           html: string
         }
-        content: {
-          html: string
-        }
+        images: {
+          image: { url: string; alt: string }
+        }[]
       }
     }
   }
-}> = ({ data }) => {
-  const { updateFooter } = useContext(WorkContext)
+}
 
-  const { content, title } = data.prismicWork.data
-
-  useEffect(() => {
-    updateFooter(
-      <div
-        className={styles.content}
-        dangerouslySetInnerHTML={{ __html: content ? content.html : '' }}
-      />
-    )
-  }, [])
-
+const Work = ({ data }: Props) => {
+  const { description, images } = data.prismicWork.data
   return (
-    <div className='mt-4 position-relative container'>
-      <Close />
-      <Footer />
-    </div>
+    <>
+      <div className='container d-flex'>
+        <div className={styles.imageContainer}>
+          <img src={images[0].image.url} />
+        </div>
+        <Close />
+      </div>
+      <Footer
+        workDetails={
+          <div dangerouslySetInnerHTML={{ __html: description.html }} />
+        }
+      />
+    </>
   )
 }
 
@@ -45,10 +47,16 @@ export const query = graphql`
     prismicWork(id: { eq: $id }) {
       data {
         title {
-          html
+          text
         }
         description {
           html
+        }
+        images {
+          image {
+            url
+            alt
+          }
         }
       }
     }

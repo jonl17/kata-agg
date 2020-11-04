@@ -34,8 +34,8 @@ const Page: React.FC<{
     text,
   } = data.prismicPage.data
   return (
-    <div className={cn('d-flex mt-2 position-relative', styles.pageWrap)}>
-      <div className='col-lg-11'>
+    <div className={cn('d-flex container', styles.pageWrap)}>
+      <div className='col-lg-11 p-0'>
         {about && <Content className={styles.noMargin} html={about.html} />}
         <br />
         {contactInformation && (

@@ -31,12 +31,6 @@
         "placeholder": "Name  / Year / Material"
       }
     },
-    "year": {
-      "type": "Number",
-      "config": {
-        "label": "Year"
-      }
-    },
     "topofthepops": {
       "type": "Boolean",
       "config": {

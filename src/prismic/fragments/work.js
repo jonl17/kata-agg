@@ -18,7 +18,6 @@ export const fragment = graphql`
         html
         text
       }
-      year
       topofthepops
       images {
         image {
