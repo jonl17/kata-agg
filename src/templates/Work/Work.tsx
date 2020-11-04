@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import Footer from '~/components/Footer'
 import { WorkContext } from '~/context/workContext'
@@ -23,13 +23,36 @@ interface Props {
   }
 }
 
+const ImageGallery = ({
+  gallery,
+}: {
+  gallery: { url: string; alt: string }[]
+}) => {
+  const [imageIdx, setImageIdx] = useState(0)
+  const lastInLine = imageIdx !== gallery.length - 1
+  return (
+    <img
+      onClick={() =>
+        lastInLine
+          ? setImageIdx((prevIdx: number) => prevIdx + 1)
+          : setImageIdx(0)
+      }
+      src={gallery[imageIdx].url}
+    />
+  )
+}
+
 const Work = ({ data }: Props) => {
   const { description, images } = data.prismicWork.data
   return (
     <>
       <div className='container d-flex'>
         <div className={styles.imageContainer}>
-          <img src={images[0].image.url} />
+          <ImageGallery
+            gallery={images.map(item => {
+              return { url: item.image.url, alt: item.image.alt }
+            })}
+          />
         </div>
         <Close />
       </div>
