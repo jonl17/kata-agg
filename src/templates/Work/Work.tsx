@@ -38,6 +38,7 @@ const ImageGallery = ({
           : setImageIdx(0)
       }
       src={gallery[imageIdx].url}
+      alt={gallery[imageIdx].alt}
     />
   )
 }
