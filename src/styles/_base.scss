@@ -3,7 +3,7 @@
 
 // some styles
 * {
-  cursor: url('../assets/custom-cursor.svg'), auto;
+  cursor: url('../assets/custom-cursor.svg') 25 25, auto;
 }
 
 body {
@@ -17,7 +17,7 @@ body {
 }
 
 body a:hover {
-  cursor: url('../assets/custom-cursor.svg'), auto;
+  cursor: url('../assets/custom-cursor.svg') 25 25, auto;
 }
 
 .anchorClass {
@@ -27,11 +27,6 @@ body a:hover {
 ::selection {
   background: $white;
   color: gold;
-}
-
-.larger-text {
-  font-size: 30px;
-  line-height: 35.73px;
 }
 
 .content {

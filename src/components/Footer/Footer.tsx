@@ -16,8 +16,10 @@ const Footer = ({ workDetails = '' }: FooterProps) => {
         'd-flex justify-content-between align-items-end container'
       )}
     >
-      <div className='parag'>{workDetails}</div>
-      <Link to='/information'>{footerData ? footerData : 'Information'}</Link>
+      <div>{workDetails}</div>
+      <Link className='large-text' to='/information'>
+        {footerData ? footerData : 'information'}
+      </Link>
     </div>
   )
 }

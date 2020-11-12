@@ -6,17 +6,19 @@ import { WorkContext } from '~/context/workContext'
 import { navigate } from 'gatsby'
 import cn from 'classnames'
 
-const Item: React.FC<{ item: Work; fixed: boolean; idx: number }> = ({
-  item,
-  fixed,
-  idx,
-}) => {
+const Item: React.FC<{
+  item: Work
+  fixed: boolean
+  idx: number
+  len: number
+}> = ({ item, fixed, idx, len }) => {
   const [cords, setCords] = useState<{ x: number; y: number } | null>(null)
   const { alt, url } = item.featured_image
+  const [z, setZ] = useState(0)
 
   useEffect(() => {
     if (window) {
-      const limit = window.innerWidth / 2.5
+      const limit = window.innerWidth / 1.5
       setCords(getRandomCords({ x: limit, y: 200 }, fixed))
     }
   }, [])
@@ -26,14 +28,32 @@ const Item: React.FC<{ item: Work; fixed: boolean; idx: number }> = ({
   )
 
   const isFocused = focusedWorkIdx === idx
+
+  const xAndYpos = (x: number, y: number) => {
+    return `translate3d(${x}px, ${y}px, 0px)`
+  }
+
+  useEffect(() => {
+    console.log(`index: ${idx}`, `zindex: ${z}`)
+    if (isFocused) {
+      setZ(len)
+    } else {
+      if (z !== 0) {
+        setZ(prevZ => prevZ - 1)
+      }
+    }
+  }, [focusedWorkIdx])
+
   return (
     cords && (
       <img
-        style={{ transform: `translate3d(${cords.x}px, ${cords.y}px, 0px)` }}
+        style={{ transform: xAndYpos(cords.x, cords.y), zIndex: z }}
         onClick={
           isFocused
             ? () => navigate(`/work/${item.uid}`)
-            : () => updateFocusedWorkIdx(idx)
+            : () => {
+                updateFocusedWorkIdx(idx)
+              }
         }
         className={cn(styles.imgContainer, {
           [styles.focused]: isFocused,
@@ -60,6 +80,7 @@ const Slider: React.FC<{
             key={idx}
             item={item}
             idx={idx}
+            len={works.length}
           />
         ))}
     </div>

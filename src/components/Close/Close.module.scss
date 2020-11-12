@@ -6,6 +6,6 @@
   top: $spacer;
 
   &:hover {
-    cursor: url('../../assets/custom-cursor.svg'), auto;
+    cursor: url('../../assets/custom-cursor.svg') 25 25, auto;
   }
 }
