@@ -1,21 +1,15 @@
 @import './variables';
 
 @font-face {
-  src: url('./fonts/reg.otf');
-  font-family: Neau;
+  src: url('./fonts/sarvatrika.woff2');
+  font-family: Sarvatrika;
   font-weight: normal;
-}
-
-@font-face {
-  src: url('./fonts/bold.otf');
-  font-family: Neau;
-  font-weight: bold;
 }
 
 body {
   p,
   a {
-    font-family: Neau;
+    font-family: Sarvatrika;
     text-transform: lowercase;
     font-size: 30px;
   }
@@ -24,7 +18,7 @@ body {
   h3,
   h4,
   h5 {
-    font-family: Neau;
+    font-family: Sarvatrika;
   }
   a {
     color: $black;

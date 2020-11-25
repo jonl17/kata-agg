@@ -17,9 +17,13 @@ const Footer = ({ workDetails = '' }: FooterProps) => {
       )}
     >
       <div>{workDetails}</div>
-      <Link className='large-text' to='/info'>
-        {footerData ? footerData : 'info'}
-      </Link>
+      {footerData ? (
+        footerData
+      ) : (
+        <Link className='large-text' to='/info'>
+          info
+        </Link>
+      )}
     </div>
   )
 }
