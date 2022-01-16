@@ -1,0 +1,72 @@
+// some styles
+* {
+  cursor: url('./config/assets/custom-cursor.svg') 25 25, auto;
+}
+
+body {
+  font-family: Helvetica Neau;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+body a:hover {
+  cursor: url('./config/assets/custom-cursor.svg') 25 25, auto;
+}
+
+.anchorClass {
+  text-decoration: underline !important;
+}
+
+::selection {
+  background: $white;
+  color: gold;
+}
+
+.content {
+  p,
+  a {
+    font-size: 39px;
+    line-height: 44px;
+  }
+}
+
+.container {
+  max-width: 100%;
+  padding: 40px;
+}
+
+.pageWrap {
+  p {
+    margin-bottom: $spacer * 2;
+  }
+}
+
+.textBox {
+  height: 100%;
+  display: block;
+  p,
+  a {
+    margin: 0;
+  }
+}
+
+.textBox:not(:first-of-type) {
+  margin: calc(#{$spacer} * 2) 0;
+}
+
+.noMargin {
+  p,
+  a {
+    font-size: 30px;
+    line-height: 35.73px;
+    margin: 0;
+  }
+}
+
+.textWrap:not(:last-of-type) {
+  margin-bottom: $spacer * 2;
+}

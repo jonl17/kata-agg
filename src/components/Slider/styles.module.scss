@@ -1,5 +1,3 @@
-@import '../../styles/variables';
-
 @keyframes fade {
   from {
     opacity: 0;
@@ -21,8 +19,15 @@
   position: sticky;
   top: 0px;
   width: 100%;
-  max-width: 30vw;
   z-index: 0;
+  max-width: 25vw;
+
+  &--medium {
+    max-width: 35vw;
+  }
+  &--large {
+    max-width: 45vw;
+  }
 }
 
 .focused {

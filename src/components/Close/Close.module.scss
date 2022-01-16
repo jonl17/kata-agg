@@ -1,11 +1,9 @@
-@import '../../styles/variables';
-
 .closeBtn {
   position: absolute;
-  right: $spacer;
-  top: $spacer;
+  right: 20px;
+  top: 20px;
 
   &:hover {
-    cursor: url('../../assets/custom-cursor.svg') 25 25, auto;
+    cursor: url('../../styles/config/assets/custom-cursor.svg') 25 25, auto;
   }
 }

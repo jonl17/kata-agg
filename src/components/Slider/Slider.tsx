@@ -34,7 +34,6 @@ const Item: React.FC<{
   }
 
   useEffect(() => {
-    console.log(`index: ${idx}`, `zindex: ${z}`)
     if (isFocused) {
       setZ(len)
     } else {

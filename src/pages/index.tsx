@@ -14,11 +14,13 @@ const Frontpage: React.FC<{
 
   const { works } = prismicFrontpage.data
 
+  console.log(works)
+
   return (
     <div>
       {!!works.length && (
         <Slider
-          works={works.map(item => {
+          works={works.filter(item => item.work.document).map(item => {
             return {
               uid: item.work.document.uid,
               ...item.work.document.data,

@@ -2,7 +2,6 @@ import React from 'react'
 import Content from '~/components/Content'
 import { graphql, Link } from 'gatsby'
 import Close from '~/components/Close'
-import styles from './Page.module.scss'
 import cn from 'classnames'
 
 function breakEmailIntoTwoLines(html: string) {
@@ -34,9 +33,9 @@ const Page: React.FC<{
     text,
   } = data.prismicPage.data
   return (
-    <div className={cn('d-flex container', styles.pageWrap)}>
+    <div className={cn('d-flex container pageWrap')}>
       <div className='col-lg-11 p-0'>
-        {about && <Content className={styles.noMargin} html={about.html} />}
+        {about && <Content className='noMargin' html={about.html} />}
         <br />
         {contactInformation && (
           <Content html={breakEmailIntoTwoLines(contactInformation.html)} />
@@ -44,12 +43,12 @@ const Page: React.FC<{
         {text &&
           !!text.length &&
           text.map(item => (
-            <div className={cn('content', styles.textWrap)}>
+            <div className={cn('content textWrap')}>
               <Link className='anchorClass' to={item.text_pdf_link.url}>
                 {item.text_name}
               </Link>
               <Content
-                className={styles.noMargin}
+                className='noMargin'
                 html={item.other_information.html}
               />
             </div>
