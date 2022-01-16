@@ -16,4 +16,11 @@
   img {
     height: 65vh;
   }
+
+  @include media-breakpoint-down('md') {
+    img {
+      height: 50vh;
+      width: 100%;
+    }
+  }
 }

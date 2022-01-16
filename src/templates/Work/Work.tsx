@@ -17,51 +17,57 @@ interface Props {
         }
         images: {
           image: { url: string; alt: string }
+          text: {
+            html: string
+          }
         }[]
       }
     }
   }
 }
 
-const ImageGallery = ({
-  gallery,
-}: {
-  gallery: { url: string; alt: string }[]
-}) => {
+const Work = ({ data }: Props) => {
+  const { description, images, title } = data.prismicWork.data
+
+  const gallery = images.map(item => ({
+    url: item.image.url,
+    alt: item.image.alt,
+    text: item.text,
+  }))
+
   const [imageIdx, setImageIdx] = useState(0)
   const lastInLine = imageIdx !== gallery.length - 1
-  return (
-    <img
-      onClick={() =>
-        lastInLine
-          ? setImageIdx((prevIdx: number) => prevIdx + 1)
-          : setImageIdx(0)
-      }
-      src={gallery[imageIdx].url}
-      alt={gallery[imageIdx].alt}
-    />
-  )
-}
 
-const Work = ({ data }: Props) => {
-  const { description, images } = data.prismicWork.data
+  console.log(description)
+
   return (
     <>
       <div className='container d-flex'>
         <div className={styles.imageContainer}>
-          <ImageGallery
-            gallery={images.map(item => {
-              return { url: item.image.url, alt: item.image.alt }
-            })}
+          <img
+            onClick={() =>
+              lastInLine
+                ? setImageIdx((prevIdx: number) => prevIdx + 1)
+                : setImageIdx(0)
+            }
+            src={gallery[imageIdx].url}
+            alt={gallery[imageIdx].alt}
           />
         </div>
         <Close />
       </div>
-      <Footer
-        workDetails={
-          <div dangerouslySetInnerHTML={{ __html: description.html }} />
-        }
-      />
+      <Footer>
+        <div>
+          <p>{title.text}</p>
+        </div>
+        {gallery[imageIdx].text && (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: gallery[imageIdx].text.html,
+            }}
+          />
+        )}
+      </Footer>
     </>
   )
 }
@@ -80,6 +86,9 @@ export const query = graphql`
           image {
             url
             alt
+          }
+          text {
+            html
           }
         }
       }

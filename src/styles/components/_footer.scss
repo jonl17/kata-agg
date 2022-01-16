@@ -1,0 +1,32 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
+
+  @include media-breakpoint-down('md') {
+    justify-content: flex-start;
+  }
+  align-items: flex-end;
+
+  div {
+    max-width: 50%;
+
+    @include media-breakpoint-down('md') {
+      max-width: auto;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 25px;
+  }
+
+  &__left {
+    max-width: 50%;
+  }
+}

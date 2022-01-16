@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import '~/prismic/fragments/work'
 import Slider from '~/components/Slider'
 import { PrismicFrontpageQuery } from '~/types'
@@ -20,15 +20,21 @@ const Frontpage: React.FC<{
     <div>
       {!!works.length && (
         <Slider
-          works={works.filter(item => item.work.document).map(item => {
-            return {
-              uid: item.work.document.uid,
-              ...item.work.document.data,
-            }
-          })}
+          works={works
+            .filter(item => item.work.document)
+            .map(item => {
+              return {
+                uid: item.work.document.uid,
+                ...item.work.document.data,
+              }
+            })}
         />
       )}
-      <Footer />
+      <Footer>
+        <Link to='/info'>
+          <p>info</p>
+        </Link>
+      </Footer>
     </div>
   )
 }
