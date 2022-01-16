@@ -4,28 +4,26 @@ import '~/prismic/fragments/work'
 import Slider from '~/components/Slider'
 import { PrismicFrontpageQuery } from '~/types'
 import Footer from '~/components/Footer'
+import { useFooterStore } from '~/store/footerStore'
 
 const Frontpage: React.FC<{
-  data: { prismicFrontpage: PrismicFrontpageQuery }
-}> = ({ data: { prismicFrontpage } }) => {
-  if (!prismicFrontpage.data) {
-    return null
-  }
+  data: any
+}> = ({ data }) => {
+  const { works } = data.prismicFrontpage.data
 
-  const { works } = prismicFrontpage.data
-
-  console.log(works)
+  const { content } = useFooterStore()
 
   return (
     <div>
       {!!works.length && (
         <Slider
           works={works
-            .filter(item => item.work.document)
-            .map(item => {
+            .filter((item: any) => item.work.document)
+            .map((item: any) => {
               return {
                 uid: item.work.document.uid,
                 ...item.work.document.data,
+                size: item.size,
               }
             })}
         />
@@ -34,6 +32,7 @@ const Frontpage: React.FC<{
         <Link to='/info'>
           <p>info</p>
         </Link>
+        <div>{content}</div>
       </Footer>
     </div>
   )
@@ -46,6 +45,7 @@ export const query = graphql`
     prismicFrontpage {
       data {
         works {
+          size
           work {
             document {
               ...prismicWorkFragment

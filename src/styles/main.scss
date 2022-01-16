@@ -1,8 +1,4 @@
-@import './config/bs-core';
-@import './config/variables';
+@import './config/tailwind.css';
 @import './config/font';
 @import './config/glob';
-
-$spacer: 1rem;
-
 @import './components/footer';

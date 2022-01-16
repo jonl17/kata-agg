@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { graphql } from 'gatsby'
 import Footer from '~/components/Footer'
-import { WorkContext } from '~/context/workContext'
 import Close from '~/components/Close'
-import styles from './Work.module.scss'
+import cn from 'classnames'
 
 interface Props {
   data: {
@@ -38,24 +37,48 @@ const Work = ({ data }: Props) => {
   const [imageIdx, setImageIdx] = useState(0)
   const lastInLine = imageIdx !== gallery.length - 1
 
-  console.log(description)
+  const [active, setActive] = useState(false)
+
+  const [cords, setCords] = useState<{ x: number; y: number }>()
+
+  const handleMouse = (e: MouseEvent) => {
+    if (active) {
+      const { clientX, clientY } = e
+      setCords({ x: clientX, y: clientY })
+    }
+  }
 
   return (
     <>
-      <div className='container d-flex'>
-        <div className={styles.imageContainer}>
-          <img
-            onClick={() =>
-              lastInLine
-                ? setImageIdx((prevIdx: number) => prevIdx + 1)
-                : setImageIdx(0)
-            }
-            src={gallery[imageIdx].url}
-            alt={gallery[imageIdx].alt}
-          />
-        </div>
-        <Close />
+      <div className='h-screen w-full grid place-items-center p-10'>
+        <img
+          onMouseEnter={() => setActive(true)}
+          onMouseMove={e => handleMouse(e)}
+          onMouseLeave={() => setActive(false)}
+          className={cn('slider-img', {
+            'slider-img--active': active,
+          })}
+          onClick={() =>
+            lastInLine
+              ? setImageIdx((prevIdx: number) => prevIdx + 1)
+              : setImageIdx(0)
+          }
+          src={gallery[imageIdx].url}
+          alt={gallery[imageIdx].alt}
+        />
+        {active && (
+          <p
+            style={{
+              transform: `translate3d(${cords?.x}px, ${cords?.y}px, 0)`,
+            }}
+            className='absolute'
+          >
+            {`${imageIdx + 1}/${images.length}`}
+          </p>
+        )}
       </div>
+      <Close />
+
       <Footer>
         <div>
           <p>{title.text}</p>

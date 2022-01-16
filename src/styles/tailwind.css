@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    cursor: url('~/assets/custom-cursor.svg') 25 25, auto;
+  }
+
+  p {
+    font-size: 39px;
+    line-height: 44px;
+  }
+}
+
+@layer utilities {
+  .slider-img {
+    max-height: 65vh;
+  }
+  .slider-img--small {
+    max-width: 30vw;
+  }
+  .slider-img--medium {
+    max-width: 35vw;
+  }
+  .slider-img--large {
+    max-width: 45vw;
+  }
+
+  .img-border {
+    box-shadow: 0px 0px 1px 2px white;
+  }
+}

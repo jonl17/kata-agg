@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Work } from '~/types'
-import styles from './styles.module.scss'
 import { getRandomCords } from '~/utils'
-import { WorkContext } from '~/context/workContext'
 import { navigate } from 'gatsby'
 import cn from 'classnames'
+import { useFooterStore } from '~/store/footerStore'
+import { useSliderStore } from '~/store/sliderStore'
 
 const Item: React.FC<{
   item: Work
   fixed: boolean
   idx: number
   len: number
-}> = ({ item, fixed, idx, len }) => {
+  size: 'small' | 'medium' | 'large'
+}> = ({ item, fixed, idx, len, size }) => {
   const [cords, setCords] = useState<{ x: number; y: number } | null>(null)
   const { alt, url } = item.featured_image
   const [z, setZ] = useState(0)
@@ -23,42 +24,41 @@ const Item: React.FC<{
     }
   }, [])
 
-  const { updateFooter, focusedWorkIdx, updateFocusedWorkIdx } = useContext(
-    WorkContext
-  )
-
-  const isFocused = focusedWorkIdx === idx
+  const { toggleContent } = useFooterStore()
+  const { focused, toggleFocused } = useSliderStore()
 
   const xAndYpos = (x: number, y: number) => {
     return `translate3d(${x}px, ${y}px, 0px)`
   }
 
   useEffect(() => {
-    if (isFocused) {
+    if (focused === idx) {
       setZ(len)
     } else {
       if (z !== 0) {
         setZ(prevZ => prevZ - 1)
       }
     }
-  }, [focusedWorkIdx])
+  }, [focused])
 
   return (
     cords && (
       <img
+        className={cn('sticky top-0 z-0 slider-img slider-img--small', {
+          'img-border z-20': focused === idx,
+          'slider-img--medium': size === 'medium',
+          'slider-img--large': size === 'large',
+        })}
         style={{ transform: xAndYpos(cords.x, cords.y), zIndex: z }}
         onClick={
-          isFocused
+          focused === idx
             ? () => navigate(`/work/${item.uid}`)
             : () => {
-                updateFocusedWorkIdx(idx)
+                toggleFocused(idx)
               }
         }
-        className={cn(styles.imgContainer, {
-          [styles.focused]: isFocused,
-        })}
-        onMouseOver={() => updateFooter(<p>{item.title.text}</p>)}
-        onMouseLeave={() => updateFooter('')}
+        onMouseOver={() => toggleContent(<p>{item.title.text}</p>)}
+        onMouseLeave={() => toggleContent('')}
         src={url}
         alt={alt}
       />
@@ -70,7 +70,7 @@ const Slider: React.FC<{
   works: Work[]
 }> = ({ works }) => {
   return (
-    <div className={styles.container}>
+    <div className='grid gap-y-96 grid-rows-1'>
       {works
         .filter(item => item.featured_image.url)
         .map((item, idx) => (
@@ -80,6 +80,7 @@ const Slider: React.FC<{
             item={item}
             idx={idx}
             len={works.length}
+            size={item.size}
           />
         ))}
     </div>

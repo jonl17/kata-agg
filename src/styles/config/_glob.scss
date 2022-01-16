@@ -1,4 +1,3 @@
-// some styles
 * {
   cursor: url('~/assets/custom-cursor.svg') 25 25, auto;
   box-sizing: border-box;
@@ -29,7 +28,7 @@ body {
 }
 
 ::selection {
-  background: $white;
+  background: white;
   color: gold;
 }
 
@@ -46,12 +45,6 @@ body {
   padding: 40px;
 }
 
-.pageWrap {
-  p {
-    margin-bottom: $spacer * 2;
-  }
-}
-
 .textBox {
   height: 100%;
   display: block;
@@ -61,10 +54,6 @@ body {
   }
 }
 
-.textBox:not(:first-of-type) {
-  margin: calc(#{$spacer} * 2) 0;
-}
-
 .noMargin {
   p,
   a {
@@ -72,8 +61,4 @@ body {
     line-height: 35.73px;
     margin: 0;
   }
-}
-
-.textWrap:not(:last-of-type) {
-  margin-bottom: $spacer * 2;
 }

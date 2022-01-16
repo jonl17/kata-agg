@@ -20,6 +20,7 @@ interface PrismicWorkQuery {
       images: {
         image: Image
       }[]
+      size: 'small' | 'medium' | 'large'
     }
   }
 }
@@ -48,4 +49,5 @@ export interface Work {
   images: {
     image: Image
   }[]
+  size: 'small' | 'medium' | 'large'
 }

@@ -7,6 +7,7 @@ const { htmlSerializer } = require('./src/prismic/htmlSerializer')
 module.exports = {
   plugins: [
     `gatsby-plugin-sass`,
+    'gatsby-plugin-postcss',
     `gatsby-plugin-typescript`,
     `gatsby-plugin-layout`,
     `gatsby-transformer-sharp`,

@@ -17,6 +17,14 @@
               "customtypes": ["work"],
               "label": "Work"
             }
+          },
+          "size": {
+            "type": "Select",
+            "config": {
+              "options": ["small", "medium", "large"],
+              "default_value": "small",
+              "label": "size"
+            }
           }
         },
         "label": "Works"

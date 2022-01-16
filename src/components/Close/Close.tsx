@@ -1,17 +1,16 @@
 import React, { useContext } from 'react'
 import { Link } from 'gatsby'
-import { WorkContext } from '~/context/workContext'
-import styles from './Close.module.scss'
 import cn from 'classnames'
+import { useFooterStore } from '~/store/footerStore'
 
 export default ({ ...props }) => {
-  const { updateFooter } = useContext(WorkContext)
+  const { toggleContent } = useFooterStore()
   return (
     <Link
-      className={cn(styles.closeBtn)}
+      className='absolute h-20 w-20 grid place-items-center right-0 top-0'
       to='/'
       {...props}
-      onClick={() => updateFooter('')}
+      onClick={() => toggleContent('')}
     >
       <svg
         width='24'
