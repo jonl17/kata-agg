@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { graphql } from 'gatsby'
 import Footer from '~/components/Footer'
 import Close from '~/components/Close'
 import cn from 'classnames'
+import Img, { FluidObject } from 'gatsby-image'
 
 interface Props {
   data: {
@@ -15,7 +16,7 @@ interface Props {
           html: string
         }
         images: {
-          image: { url: string; alt: string }
+          image: { url: string; alt: string; fluid: FluidObject }
           text: {
             html: string
           }
@@ -41,22 +42,36 @@ const Work = ({ data }: Props) => {
 
   const [cords, setCords] = useState<{ x: number; y: number }>()
 
+  useEffect(() => {
+    window.addEventListener('mousemove', handleMouse)
+  }, [])
+
   const handleMouse = (e: MouseEvent) => {
-    if (active) {
-      const { clientX, clientY } = e
-      setCords({ x: clientX, y: clientY })
-    }
+    const { clientX, clientY } = e
+    setCords({ x: clientX - 30, y: clientY - 30 })
   }
+
+  console.log(active)
 
   return (
     <>
       <div className='h-screen w-full grid place-items-center p-10'>
+        <span
+          style={{
+            transform: `translate3d(${cords?.x}px, ${cords?.y}px, 0)`,
+          }}
+          className={cn('top-0 left-0 absolute w-10 h-10 pointer-events-none', {
+            visible: active,
+            invisible: !active,
+          })}
+        >
+          <p>{`${imageIdx + 1}/${images.length}`}</p>
+        </span>
         <img
           onMouseEnter={() => setActive(true)}
-          onMouseMove={e => handleMouse(e)}
           onMouseLeave={() => setActive(false)}
           className={cn('slider-img', {
-            'slider-img--active': active,
+            'slider-img--active cursor-none': active,
           })}
           onClick={() =>
             lastInLine
@@ -66,16 +81,6 @@ const Work = ({ data }: Props) => {
           src={gallery[imageIdx].url}
           alt={gallery[imageIdx].alt}
         />
-        {active && (
-          <p
-            style={{
-              transform: `translate3d(${cords?.x}px, ${cords?.y}px, 0)`,
-            }}
-            className='absolute'
-          >
-            {`${imageIdx + 1}/${images.length}`}
-          </p>
-        )}
       </div>
       <Close />
 
@@ -109,6 +114,9 @@ export const query = graphql`
           image {
             url
             alt
+            fluid {
+              ...GatsbyPrismicImageFluid
+            }
           }
           text {
             html

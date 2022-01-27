@@ -33,7 +33,7 @@ const Page: React.FC<{
     text,
   } = data.prismicPage.data
   return (
-    <div className={cn('d-flex container pageWrap')}>
+    <div className={cn('d-flex container p-5')}>
       <div className='col-lg-11 p-0'>
         {about && <Content className='noMargin' html={about.html} />}
         <br />
