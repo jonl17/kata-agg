@@ -55,7 +55,7 @@ const Work = ({ data }: Props) => {
 
   return (
     <>
-      <div className='h-screen w-full grid place-items-center p-10'>
+      <div className='h-screen w-full grid place-items-center p-10 relative'>
         <span
           style={{
             transform: `translate3d(${cords?.x}px, ${cords?.y}px, 0)`,
