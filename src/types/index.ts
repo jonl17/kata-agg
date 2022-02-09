@@ -1,4 +1,6 @@
-export type Image = { alt: string; url: string }
+import { FluidObject } from 'gatsby-image'
+
+export type Image = { alt: string; url: string; fluid: FluidObject }
 
 interface PrismicWorkQuery {
   document: {

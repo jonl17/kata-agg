@@ -60,27 +60,37 @@ const Work = ({ data }: Props) => {
           style={{
             transform: `translate3d(${cords?.x}px, ${cords?.y}px, 0)`,
           }}
-          className={cn('top-0 left-0 absolute w-10 h-10 pointer-events-none', {
-            visible: active,
-            invisible: !active,
-          })}
+          className={cn(
+            'top-0 left-0 absolute w-10 h-10 z-10 pointer-events-none',
+            {
+              visible: active,
+              invisible: !active,
+            }
+          )}
         >
           <p>{`${imageIdx + 1}/${images.length}`}</p>
         </span>
-        <img
-          onMouseEnter={() => setActive(true)}
-          onMouseLeave={() => setActive(false)}
-          className={cn('slider-img', {
-            'slider-img--active cursor-none': active,
-          })}
-          onClick={() =>
-            lastInLine
-              ? setImageIdx((prevIdx: number) => prevIdx + 1)
-              : setImageIdx(0)
-          }
-          src={gallery[imageIdx].url}
-          alt={gallery[imageIdx].alt}
-        />
+        {gallery.map((item, key) => (
+          <img
+            key={key}
+            onMouseEnter={() => setActive(true)}
+            onMouseLeave={() => setActive(false)}
+            className={cn(
+              'slider-img absolute z-0 opacity-0 pointer-events-none',
+              {
+                'cursor-none': active,
+                'opacity-100 pointer-events-auto': imageIdx === key,
+              }
+            )}
+            onClick={() =>
+              lastInLine
+                ? setImageIdx((prevIdx: number) => prevIdx + 1)
+                : setImageIdx(0)
+            }
+            src={item.url}
+            alt={item.alt}
+          />
+        ))}
       </div>
       <Close />
 

@@ -5,6 +5,7 @@ import { navigate } from 'gatsby'
 import cn from 'classnames'
 import { useFooterStore } from '~/store/footerStore'
 import { useSliderStore } from '~/store/sliderStore'
+import Img from 'gatsby-image'
 
 const Item: React.FC<{
   item: Work
@@ -16,6 +17,8 @@ const Item: React.FC<{
   const [cords, setCords] = useState<{ x: number; y: number } | null>(null)
   const { alt, url } = item.featured_image
   const [z, setZ] = useState(0)
+
+  console.log(item.featured_image)
 
   useEffect(() => {
     if (window) {
@@ -43,12 +46,15 @@ const Item: React.FC<{
 
   return (
     cords && (
-      <img
-        className={cn('sticky top-0 z-0 slider-img slider-img--small', {
-          'img-border z-20': focused === idx,
-          'slider-img--medium': size === 'medium',
-          'slider-img--large': size === 'large',
-        })}
+      <button
+        className={cn(
+          'sticky top-0 z-0 slider-img slider-img--small h-full w-full',
+          {
+            'img-border z-20': focused === idx,
+            'slider-img--medium': size === 'medium',
+            'slider-img--large': size === 'large',
+          }
+        )}
         style={{ transform: xAndYpos(cords.x, cords.y), zIndex: z }}
         onClick={
           focused === idx
@@ -59,9 +65,9 @@ const Item: React.FC<{
         }
         onMouseOver={() => toggleContent(<p>{item.title.text}</p>)}
         onMouseLeave={() => toggleContent('')}
-        src={url}
-        alt={alt}
-      />
+      >
+        <Img fluid={item.featured_image.fluid} alt={item.featured_image.alt} />
+      </button>
     )
   )
 }
