@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import '~/prismic/fragments/work'
 import Slider from '~/components/Slider'
-import { PrismicFrontpageQuery } from '~/types'
 import Footer from '~/components/Footer'
 import { useFooterStore } from '~/store/footerStore'
 

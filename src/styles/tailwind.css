@@ -7,9 +7,14 @@
     cursor: url('~/assets/custom-cursor.svg') 25 25, auto;
   }
 
+  a,
   p {
     font-size: 39px;
     line-height: 44px;
+  }
+
+  a {
+    text-decoration: underline;
   }
 }
 
