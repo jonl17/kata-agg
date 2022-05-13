@@ -1,8 +1,16 @@
 import React from 'react'
-import Footer from '~/components/Footer'
+import { Helmet } from 'react-helmet'
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return <main>{children}</main>
+  return (
+    <>
+      <Helmet>
+        <title>Katrín Agnes</title>
+        <link rel='icon' href='/favicon.png' />
+      </Helmet>
+      <main>{children}</main>
+    </>
+  )
 }
 
 export default Layout

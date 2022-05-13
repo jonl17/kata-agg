@@ -12,6 +12,7 @@ module.exports = {
     `gatsby-plugin-layout`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
