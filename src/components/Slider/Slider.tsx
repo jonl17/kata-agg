@@ -3,7 +3,7 @@ import { Work } from '~/types'
 import { getRandomCords } from '~/utils'
 import { navigate } from 'gatsby'
 import cn from 'classnames'
-import { useFooterStore } from '~/store/footerStore'
+import { ContentType, useFooterStore } from '~/store/footerStore'
 import { useSliderStore } from '~/store/sliderStore'
 import Img from 'gatsby-image'
 
@@ -13,12 +13,11 @@ const Item: React.FC<{
   idx: number
   len: number
   size: 'small' | 'medium' | 'large'
-}> = ({ item, fixed, idx, len, size }) => {
+  toggleFooterStuff: (content: ContentType) => void
+}> = ({ item, fixed, idx, len, size, toggleFooterStuff }) => {
   const [cords, setCords] = useState<{ x: number; y: number } | null>(null)
   const { alt, url } = item.featured_image
   const [z, setZ] = useState(0)
-
-  console.log(item.featured_image)
 
   useEffect(() => {
     if (window) {
@@ -27,7 +26,7 @@ const Item: React.FC<{
     }
   }, [])
 
-  const { toggleContent } = useFooterStore()
+  // const { toggleContent } = useFooterStore()
   const { focused, toggleFocused } = useSliderStore()
 
   const xAndYpos = (x: number, y: number) => {
@@ -63,8 +62,8 @@ const Item: React.FC<{
                 toggleFocused(idx)
               }
         }
-        onMouseOver={() => toggleContent(<p>{item.title.text}</p>)}
-        onMouseLeave={() => toggleContent('')}
+        onMouseEnter={() => toggleFooterStuff(<p>{item.title.text}</p>)}
+        onMouseLeave={() => toggleFooterStuff('')}
       >
         <Img fluid={item.featured_image.fluid} alt={item.featured_image.alt} />
       </button>
@@ -74,7 +73,8 @@ const Item: React.FC<{
 
 const Slider: React.FC<{
   works: Work[]
-}> = ({ works }) => {
+  toggleFooterStuff: (content: ContentType) => void
+}> = ({ works, toggleFooterStuff }) => {
   return (
     <div className='grid gap-y-96 grid-rows-1'>
       {works
@@ -87,6 +87,7 @@ const Slider: React.FC<{
             idx={idx}
             len={works.length}
             size={item.size}
+            toggleFooterStuff={toggleFooterStuff}
           />
         ))}
     </div>

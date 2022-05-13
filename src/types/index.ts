@@ -36,6 +36,7 @@ export interface PrismicFrontpageQuery {
 }
 
 export interface Work {
+  url: string
   uid: string
   title: {
     text: string

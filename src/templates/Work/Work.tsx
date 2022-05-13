@@ -51,8 +51,6 @@ const Work = ({ data }: Props) => {
     setCords({ x: clientX - 30, y: clientY - 30 })
   }
 
-  console.log(active)
-
   return (
     <>
       <div className='h-screen w-full grid place-items-center p-10 relative'>

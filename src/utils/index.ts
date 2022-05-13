@@ -1,3 +1,5 @@
+import { Work } from '~/types'
+
 const rdnNum = (limit: number) => {
   return Math.floor(Math.random() * limit)
 }
@@ -22,4 +24,12 @@ export const getRandomCords = (
   fixed: boolean
 ) => {
   return { x: rdnNum(limit.x), y: rdnNum(fixed ? -100 : limit.y) }
+}
+
+export const sortWorks = (works: Work[]) => {
+  const priorityArr = works.filter(work => work.topofthepops)
+  const restArr = works.filter(work => !work.topofthepops)
+  const shuffledPriorityArr = priorityArr.sort(() => 0.5 - Math.random())
+  const shuffledRestArr = restArr.sort(() => 0.5 - Math.random())
+  return [...shuffledPriorityArr, ...shuffledRestArr]
 }

@@ -1,6 +1,6 @@
 import create from 'zustand'
 
-type ContentType = JSX.Element | string
+export type ContentType = JSX.Element | string
 
 interface IFooterStore {
   content: ContentType
