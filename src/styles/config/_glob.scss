@@ -40,6 +40,10 @@ body {
   }
 }
 
+.content > a {
+  text-decoration: underline;
+}
+
 .container {
   max-width: 100%;
   padding: 40px;

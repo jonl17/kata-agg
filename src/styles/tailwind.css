@@ -12,10 +12,6 @@
     font-size: 39px;
     line-height: 44px;
   }
-
-  a {
-    text-decoration: underline;
-  }
 }
 
 @layer utilities {
@@ -34,5 +30,9 @@
 
   .img-border {
     box-shadow: 0px 0px 1px 2px white;
+  }
+
+  .content a {
+    @apply underline hover:opacity-75;
   }
 }
