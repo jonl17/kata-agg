@@ -9,7 +9,7 @@
     "title": {
       "type": "StructuredText",
       "config": {
-        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "single": "heading1,heading2,heading3,heading4,heading5,heading6",
         "label": "Title"
       }
     },
@@ -26,7 +26,7 @@
     "description": {
       "type": "StructuredText",
       "config": {
-        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, embed, list-item, o-list-item, rtl",
+        "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,embed,list-item,o-list-item,rtl",
         "label": "Description",
         "placeholder": "Name  / Year / Material"
       }
@@ -52,10 +52,17 @@
               "label": "Image"
             }
           },
+          "name": {
+            "type": "Text",
+            "config": {
+              "label": "name",
+              "placeholder": "Will appear in bottom left corner"
+            }
+          },
           "text": {
             "type": "StructuredText",
             "config": {
-              "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, embed, list-item, o-list-item, rtl",
+              "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,embed,list-item,o-list-item,rtl",
               "label": "Text",
               "placeholder": "Will appear in bottom right corner"
             }

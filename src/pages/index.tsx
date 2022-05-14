@@ -37,10 +37,13 @@ const Frontpage: React.FC<{
     <div>
       <Slider works={shuffledWorks} toggleFooterStuff={toggleFooterStuff} />
       <Footer>
-        <Link to='/info'>
-          <p>info</p>
-        </Link>
-        <div>{footerStuff}</div>
+        {!footerStuff ? (
+          <Link to='/info'>
+            <p>info</p>
+          </Link>
+        ) : (
+          <div>{footerStuff}</div>
+        )}
       </Footer>
     </div>
   )

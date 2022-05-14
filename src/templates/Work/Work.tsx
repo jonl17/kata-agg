@@ -20,6 +20,7 @@ interface Props {
           text: {
             html: string
           }
+          name?: string
         }[]
       }
     }
@@ -33,6 +34,7 @@ const Work = ({ data }: Props) => {
     url: item.image.url,
     alt: item.image.alt,
     text: item.text,
+    title: item.name,
   }))
 
   const [imageIdx, setImageIdx] = useState(0)
@@ -53,7 +55,7 @@ const Work = ({ data }: Props) => {
 
   return (
     <>
-      <div className='h-screen w-full grid place-items-center p-10 relative'>
+      <div className='h-screen w-full grid place-items-center p-10 relative overflow-hidden'>
         <span
           style={{
             transform: `translate3d(${cords?.x}px, ${cords?.y}px, 0)`,
@@ -94,7 +96,7 @@ const Work = ({ data }: Props) => {
 
       <Footer>
         <div>
-          <p>{title.text}</p>
+          <p>{gallery[imageIdx].title ?? title.text}</p>
         </div>
         {gallery[imageIdx].text && (
           <div
@@ -126,6 +128,7 @@ export const query = graphql`
               ...GatsbyPrismicImageFluid
             }
           }
+          name
           text {
             html
           }
