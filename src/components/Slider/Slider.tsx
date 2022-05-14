@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Work } from '~/types'
 import { getRandomCords } from '~/utils'
 import { navigate } from 'gatsby'
@@ -16,7 +16,6 @@ const Item: React.FC<{
   toggleFooterStuff: (content: ContentType) => void
 }> = ({ item, fixed, idx, len, size, toggleFooterStuff }) => {
   const [cords, setCords] = useState<{ x: number; y: number } | null>(null)
-  const { alt, url } = item.featured_image
   const [z, setZ] = useState(0)
 
   useEffect(() => {
@@ -26,10 +25,16 @@ const Item: React.FC<{
     }
   }, [])
 
-  // const { toggleContent } = useFooterStore()
   const { focused, toggleFocused } = useSliderStore()
 
+  const itemRef = useRef<HTMLButtonElement | null>(null)
+
   const xAndYpos = (x: number, y: number) => {
+    if (typeof window !== undefined) {
+      const windowWidth = window.innerWidth
+      return `translate3d(${x < windowWidth - 800 ? x : 0}px, ${y}px, 0px)`
+    }
+
     return `translate3d(${x}px, ${y}px, 0px)`
   }
 
@@ -46,6 +51,7 @@ const Item: React.FC<{
   return (
     cords && (
       <button
+        ref={itemRef}
         className={cn(
           'sticky top-0 z-0 slider-img slider-img--small h-full w-full',
           {
