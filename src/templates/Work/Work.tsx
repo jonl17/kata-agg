@@ -28,7 +28,7 @@ interface Props {
 }
 
 const Work = ({ data }: Props) => {
-  const { description, images, title } = data.prismicWork.data
+  const { images, title } = data.prismicWork.data
 
   const gallery = images.map(item => ({
     url: item.image.url,

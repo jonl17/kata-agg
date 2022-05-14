@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: Gamba;
+  font-style: normal;
+  font-weight: 400;
+  src: url('/regular.woff') format('woff');
+}
+
 @layer base {
   * {
     cursor: url('~/assets/custom-cursor.svg') 25 25, auto;
+    font-family: Gamba, sans-serif;
   }
 
   a,
