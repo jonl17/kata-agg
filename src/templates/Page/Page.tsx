@@ -44,9 +44,14 @@ const Page: React.FC<{
           !!text.length &&
           text.map(item => (
             <div className={cn('content textWrap')}>
-              <Link className='anchorClass' to={item.text_pdf_link.url}>
+              <a
+                className='anchorClass'
+                href={item.text_pdf_link.url}
+                target='_blank'
+                rel='noreferrer'
+              >
                 {item.text_name}
-              </Link>
+              </a>
               <Content
                 className='noMargin'
                 html={item.other_information.html}
