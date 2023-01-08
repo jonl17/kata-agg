@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { Work } from '~/types'
 import Img from 'gatsby-image'
 import { useInView } from '~/hook/useInView'
+import { Link } from 'gatsby'
 
 const WorkItem = ({
   featured_image,
   updateWorkInView,
   index,
+  uid,
 }: Work & { updateWorkInView: (index: number) => void; index: number }) => {
   const ref = useInView(
     () => {
@@ -17,11 +19,11 @@ const WorkItem = ({
   )
 
   return (
-    <div className='h-screen'>
+    <Link to={`/work/${uid}`} className='h-screen'>
       <div ref={ref}>
         <Img fluid={featured_image.fluid} alt={featured_image.alt} />
       </div>
-    </div>
+    </Link>
   )
 }
 
@@ -35,7 +37,6 @@ export default function MobileFront({ works = [] }: Props) {
   const workInView = works[workInViewIndex]
 
   const updateWorkInView = (index: number) => setWorkInViewIndex(index)
-
   return (
     <section>
       <div className='p-2 grid mt-12 gap-96'>

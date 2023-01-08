@@ -94,17 +94,26 @@ const Work = ({ data }: Props) => {
       </div>
       <Close />
 
+      <div
+        className='text block lg:hidden absolute bottom-0 p-2'
+        dangerouslySetInnerHTML={{
+          __html: gallery[imageIdx].text.html,
+        }}
+      />
+
       <Footer>
         <div>
           <p>{gallery[imageIdx].title ?? title.text}</p>
         </div>
         {gallery[imageIdx].text && (
-          <div
-            className='text'
-            dangerouslySetInnerHTML={{
-              __html: gallery[imageIdx].text.html,
-            }}
-          />
+          <>
+            <div
+              className='text hidden lg:block'
+              dangerouslySetInnerHTML={{
+                __html: gallery[imageIdx].text.html,
+              }}
+            />
+          </>
         )}
       </Footer>
     </>
