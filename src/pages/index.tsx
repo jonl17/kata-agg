@@ -25,7 +25,9 @@ const Frontpage: React.FC<{
 }> = ({ data }) => {
   const { works } = data.prismicFrontpage.data
 
-  const shuffledWorks = sortWorks(works.map(workResolver))
+  const shuffledWorks = useMemo(() => sortWorks(works.map(workResolver)), [
+    works,
+  ])
 
   const [footerStuff, setFooterStuff] = useState<ContentType>()
   const toggleFooterStuff = (stuff: ContentType) => setFooterStuff(stuff)
