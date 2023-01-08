@@ -1,5 +1,5 @@
 require('dotenv').config({
-  path: `.env.development`,
+  path: `.env`,
 })
 
 const { htmlSerializer } = require('./src/prismic/htmlSerializer')

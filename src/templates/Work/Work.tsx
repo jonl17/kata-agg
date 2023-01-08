@@ -100,6 +100,7 @@ const Work = ({ data }: Props) => {
         </div>
         {gallery[imageIdx].text && (
           <div
+            className='text'
             dangerouslySetInnerHTML={{
               __html: gallery[imageIdx].text.html,
             }}

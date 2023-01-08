@@ -43,4 +43,8 @@
   .content a {
     @apply underline hover:opacity-75;
   }
+
+  .text a {
+    text-decoration: underline;
+  }
 }
