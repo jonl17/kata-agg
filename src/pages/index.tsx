@@ -6,6 +6,7 @@ import Footer from '~/components/Footer'
 import { ContentType, useFooterStore } from '~/store/footerStore'
 import { sortWorks } from '~/utils'
 import { Work } from '~/types'
+import MobileFront from '~/components/MobileFront'
 
 const workResolver = (node: any): Work => ({
   uid: node.work.document.uid,
@@ -24,18 +25,19 @@ const Frontpage: React.FC<{
 }> = ({ data }) => {
   const { works } = data.prismicFrontpage.data
 
-  const shuffledWorks = useMemo(() => sortWorks(works.map(workResolver)), [
-    works,
-  ])
-
-  // const { content } = useFooterStore()
+  const shuffledWorks = sortWorks(works.map(workResolver))
 
   const [footerStuff, setFooterStuff] = useState<ContentType>()
   const toggleFooterStuff = (stuff: ContentType) => setFooterStuff(stuff)
 
   return (
     <div>
-      <Slider works={shuffledWorks} toggleFooterStuff={toggleFooterStuff} />
+      <div className='block lg:hidden'>
+        <MobileFront works={shuffledWorks} />
+      </div>
+      <div className='hidden lg:block'>
+        <Slider works={shuffledWorks} toggleFooterStuff={toggleFooterStuff} />
+      </div>
       <Footer>
         {!footerStuff ? (
           <Link to='/info'>
