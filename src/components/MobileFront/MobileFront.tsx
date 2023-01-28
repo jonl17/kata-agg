@@ -21,7 +21,11 @@ const WorkItem = ({
   return (
     <Link to={`/work/${uid}`} className='h-screen'>
       <div ref={ref}>
-        <Img fluid={featured_image.fluid} alt={featured_image.alt} />
+        <Img
+          imgStyle={{ objectFit: 'contain' }}
+          fluid={featured_image.fluid}
+          alt={featured_image.alt}
+        />
       </div>
     </Link>
   )
