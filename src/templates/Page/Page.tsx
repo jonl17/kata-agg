@@ -1,8 +1,8 @@
-import React from 'react'
-import Content from '~/components/Content'
-import { graphql, Link } from 'gatsby'
-import Close from '~/components/Close'
 import cn from 'classnames'
+import { graphql } from 'gatsby'
+import React from 'react'
+import Close from '~/components/Close'
+import Content from '~/components/Content'
 
 function breakEmailIntoTwoLines(html: string) {
   return html.replace('@', '<br />(at)')
@@ -23,6 +23,9 @@ const Page: React.FC<{
             html: string
           }
         }[]
+        more_text: {
+          html: string
+        }
       }
     }
   }
@@ -31,6 +34,7 @@ const Page: React.FC<{
     about,
     contact_information: contactInformation,
     text,
+    more_text,
   } = data.prismicPage.data
   return (
     <div className={cn('d-flex container p-5')}>
@@ -58,6 +62,12 @@ const Page: React.FC<{
               />
             </div>
           ))}
+        {more_text && (
+          <div
+            className='my-7'
+            dangerouslySetInnerHTML={{ __html: more_text.html }}
+          />
+        )}
       </div>
       <Close />
     </div>
@@ -82,6 +92,9 @@ export const query = graphql`
           other_information {
             html
           }
+        }
+        more_text {
+          html
         }
       }
     }

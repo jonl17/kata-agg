@@ -9,14 +9,14 @@
     "title": {
       "type": "StructuredText",
       "config": {
-        "single": "heading1, heading2, heading3, heading4, heading5, heading6",
+        "single": "heading1,heading2,heading3,heading4,heading5,heading6",
         "label": "Title"
       }
     },
     "about": {
       "type": "StructuredText",
       "config": {
-        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
+        "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
         "allowTargetBlank": true,
         "label": "About"
       }
@@ -24,7 +24,7 @@
     "contact_information": {
       "type": "StructuredText",
       "config": {
-        "multi": "paragraph, hyperlink, image, embed",
+        "multi": "paragraph,hyperlink,image,embed",
         "allowTargetBlank": true,
         "label": "Contact information",
         "placeholder": "Email and/or Instagram link etc.."
@@ -45,7 +45,8 @@
             "config": {
               "allowTargetBlank": true,
               "label": "Text pdf link",
-              "placeholder": "Link .pdf from the media library"
+              "placeholder": "Link .pdf from the media library",
+              "select": null
             }
           },
           "other_information": {
@@ -58,6 +59,14 @@
           }
         },
         "label": "Text"
+      }
+    },
+    "more_text": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph,hyperlink",
+        "allowTargetBlank": true,
+        "label": "More text"
       }
     }
   }
